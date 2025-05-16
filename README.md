@@ -23,30 +23,32 @@ A Flask-based AI chatbot that enables emotionally aware, human-like conversation
 
 🚀 Getting Started
 
-<pre> ```bash Prerequisites
 Python 3.9+
-
 pip package manager
 
 Installation
 
+<pre> ```bash Prerequisites
 git clone https://github.com/yourusername/intelligent-chatbot.git
 cd intelligent-chatbot
 pip install -r requirements.txt
+``` </pre>
 
 Setup
+
+<pre> ```bash 
 Create a .env file:
 
 ini
-Copy
-Edit
+
 FLASK_SECRET_KEY=your_secret_key
+``` </pre>
+
 Make sure to add a reminder audio file in audio/reminder.mp3.
 
 Run the App
-bash
-Copy
-Edit
+
+<pre> ```bash 
 python app.py
 Visit http://localhost:5000/ in your browser to start chatting. ``` </pre>
 
