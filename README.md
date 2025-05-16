@@ -1,2 +1,91 @@
-# IntelligentChatbot
-A Flask-based AI chatbot that combines BERT and DialoGPT for sentiment-aware conversations and task scheduling. Supports voice/text input, natural language reminders, and audio alerts—designed for accessibility, productivity, and a personalized user experience.
+🤖 Intelligent Chatbot with Sentiment Analysis and Task Scheduling
+A Flask-based AI chatbot that enables emotionally aware, human-like conversations and supports natural language-based task scheduling with audio reminders. Built using BERT for sentiment detection and DialoGPT for dialogue generation, the system is accessible through both text and voice input, and designed for productivity and inclusivity.
+
+🔧 Features
+
+🎯 Sentiment Analysis: Detects emotional tone (Happy, Neutral, Sad) using BERT.
+💬 Conversational AI: Uses DialoGPT to generate intelligent and context-aware replies.
+🗓 Task Scheduling: Set reminders with natural language and receive audio alerts.
+🗣 Voice Input Support: Converts speech to text using Google Speech Recognition.
+🔊 Audio Notifications: Reminder alerts played via Pygame TTS.
+📝 Conversation History: View, download, and clear past chat sessions.
+🌐 Web Interface: Simple, intuitive frontend built with HTML/CSS and Flask templates.
+
+📂 Project Structure
+├── app.py                    # Main Flask app with routes and logic
+├── templates/
+│   └── index.html            # Frontend HTML file
+├── audio/
+│   └── reminder.mp3          # Audio file for reminders
+├── temp_audio/               # Temporary storage for uploaded voice files
+├── .env                      # Environment variables (e.g., Flask secret key)
+├── requirements.txt          # Python dependencies
+
+🚀 Getting Started
+
+<pre> ```bash Prerequisites
+Python 3.9+
+
+pip package manager
+
+Installation
+
+git clone https://github.com/yourusername/intelligent-chatbot.git
+cd intelligent-chatbot
+pip install -r requirements.txt
+
+Setup
+Create a .env file:
+
+ini
+Copy
+Edit
+FLASK_SECRET_KEY=your_secret_key
+Make sure to add a reminder audio file in audio/reminder.mp3.
+
+Run the App
+bash
+Copy
+Edit
+python app.py
+Visit http://localhost:5000/ in your browser to start chatting. ``` </pre>
+
+🧠 Technologies Used
+
+Flask – Backend web framework
+Hugging Face Transformers
+BERT – Sentiment classification
+DialoGPT – Conversation generation
+Google Speech Recognition – Voice-to-text input
+APScheduler – Background task scheduling
+Pygame – Voice/audio playback
+Torch (PyTorch) – AI model inference
+
+📷 Sample Use Cases
+User Input	Chatbot Behavior
+"Hi"	Responds with a greeting
+"I'm feeling sad"	Offers a joke, music, or quote
+"Tell me a joke"	Delivers a random joke
+"Set a reminder for 2:00 PM with a message Drink water"	Schedules a reminder
+"21 April, Monday, 2025"	Confirms and finalizes the reminder
+
+🛡 Limitations
+
+Only supports English.
+Performance may vary with strong accents or noisy audio input.
+Reminders are scheduled locally (no cloud sync).
+
+📌 Future Enhancements
+
+Multilingual support using mBERT
+Calendar/email integration
+PWA or mobile app version
+Sentiment detection from voice tone
+
+👨‍💻 Author
+Van Raj Thakur
+
+Supervised by: Ms. Richa Nigam
+
+📃 License
+This project is licensed under the MIT License.
