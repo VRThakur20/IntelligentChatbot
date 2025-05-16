@@ -12,6 +12,7 @@ A Flask-based AI chatbot that enables emotionally aware, human-like conversation
 🌐 Web Interface: Simple, intuitive frontend built with HTML/CSS and Flask templates.
 
 📂 Project Structure
+
 ├── app.py                    # Main Flask app with routes and logic
 ├── templates/
 │   └── index.html            # Frontend HTML file
@@ -21,6 +22,7 @@ A Flask-based AI chatbot that enables emotionally aware, human-like conversation
 ├── .env                      # Environment variables (e.g., Flask secret key)
 ├── requirements.txt          # Python dependencies
 
+
 🚀 Getting Started
 
 Python 3.9+
@@ -29,29 +31,29 @@ pip package manager
 
 Installation
 
-<pre> ```
+<pre> 
 git clone https://github.com/yourusername/intelligent-chatbot.git
 cd intelligent-chatbot
 pip install -r requirements.txt
-``` </pre>
+ </pre>
 
 Setup
 
-<pre> ```
+<pre> 
 Create a .env file:
 
 ini
 
 FLASK_SECRET_KEY=your_secret_key
-``` </pre>
+</pre>
 
 Make sure to add a reminder audio file in audio/reminder.mp3.
 
 Run the App
 
-<pre> ```
+<pre>
 python app.py
-Visit http://localhost:5000/ in your browser to start chatting. ``` </pre>
+Visit http://localhost:5000/ in your browser to start chatting.  </pre>
 
 🧠 Technologies Used
 
