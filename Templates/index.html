@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Voice Interaction with Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+:root {
+    /* Enhanced color palette with different shades */
+    --primary-color: #3498db;
+    --primary-light: #5dade2;
+    --primary-dark: #2980b9;
+    --secondary-color: #2ecc71;
+    --secondary-light: #58d68d;
+    --secondary-dark: #27ae60;
+    --accent-color: #f39c12;
+    --accent-light: #f5b041;
+    --accent-dark: #d68910;
+    --background-color: #f4f6f6;
+    --text-color: #2c3e50;
+    --text-light: #7f8c8d;
+    --error-color: #e74c3c;
+    --success-color: #27ae60;
+    --warning-color: #f1c40f;
+    --border-color: #e1e4e8;
+
+    /* Enhanced spacing system */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Enhanced border radius system */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+
+    /* Enhanced shadow system */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+    /* Z-index system */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-modal: 1030;
+    --z-popover: 1040;
+    --z-tooltip: 1050;
+}
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Improved Typography */
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f0f2f5;
+    padding: var(--spacing-lg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    background-color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-2px);
+}
+
+/* Enhanced Sections */
+.section {
+    background-color: var(--background-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    height: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+.section:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Enhanced Chat Section */
+.chat-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* Enhanced Chat Box */
+.chat-box {
+    flex-grow: 1;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    overflow-y: auto;
+    height: 500px;
+    border: 1px solid var(--border-color);
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Enhanced Controls */
+.controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Enhanced Messages */
+.message {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    max-width: 80%;
+    position: relative;
+    animation: messageSlide 0.3s ease;
+}
+
+.user-message {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: var(--spacing-xs);
+}
+
+.bot-message {
+    background-color: var(--secondary-color);
+    color: white;
+    border-bottom-left-radius: var(--spacing-xs);
+}
+
+/* Enhanced Sentiment Box */
+.sentiment-box {
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    background-color: white;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+    animation: fadeIn 0.3s ease;
+}
+
+.sentiment-box:hover {
+    transform: translateY(-2px);
+}
+
+/* Enhanced Sentiment Indicator */
+.sentiment-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+}
+
+/* Enhanced Emoji */
+.emoji {
+    font-size: 2em;
+    margin-right: var(--spacing-sm);
+    transition: transform 0.3s ease;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+
+/* Enhanced Buttons */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-record {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.btn-record.recording {
+    animation: pulse 1.5s infinite;
+    background-color: var(--warning-color);
+}
+
+/* Enhanced Input */
+input[type="text"] {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Enhanced Error Message */
+.error-message {
+    background-color: var(--error-color);
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
+    animation: shake 0.5s ease;
+}
+
+/* Enhanced Animations */
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+/* Enhanced Loading Animation */
+.loading {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-md);
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --border-color: #2d2d2d;
+    }
+
+    body {
+        background-color: #121212;
+    }
+
+    .container {
+        background-color: #1e1e1e;
+    }
+
+    .chat-box, .controls, .sentiment-box {
+        background-color: #262626;
+    }
+
+    input[type="text"] {
+        background-color: #333;
+        color: white;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-section section">
+            <h2>Chat with the Bot</h2>
+            <div id="error-container"></div>
+            <div class="chat-box" id="chat-history"></div>
+            <div class="controls">
+                <button class="btn btn-record" id="start-recording-btn">
+                    <i class="fas fa-microphone"></i>
+                    Press to Talk
+                </button>
+                <input type="text" id="text-input" placeholder="Type your message..."
+                       style="flex-grow: 1; padding: 10px; border-radius: var(--border-radius); border: 1px solid #ccc;">
+                <button class="btn btn-primary" id="send-text-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Send
+                </button>
+            </div>
+        </div>
+
+        <div class="sentiment-section section">
+            <h2>Sentiment Analysis</h2>
+            <div id="sentiment-history"></div>
+        </div>
+    </div>
+
+    <script>
+        class ChatInterface {
+            constructor() {
+                this.recordButton = document.getElementById('start-recording-btn');
+                this.textInput = document.getElementById('text-input');
+                this.sendButton = document.getElementById('send-text-btn');
+                this.reminderMessageInput = document.getElementById('reminder-message');
+                this.reminderTimeInput = document.getElementById('reminder-time');
+                this.setReminderButton = document.getElementById('set-reminder-btn');
+                this.chatHistory = document.getElementById('chat-history');
+                this.sentimentHistory = document.getElementById('sentiment-history');
+                this.errorContainer = document.getElementById('error-container');
+
+                this.isRecording = false;
+                this.recognition = null;
+                this.mediaRecorder = null;
+                this.audioChunks = [];
+
+                this.initializeRecognition();
+                this.setupEventListeners();
+            }
+
+            initializeRecognition() {
+                if ('webkitSpeechRecognition' in window) {
+                    this.recognition = new webkitSpeechRecognition();
+                    this.recognition.continuous = false;
+                    this.recognition.interimResults = false;
+                    this.setupRecognitionHandlers();
+                } else {
+                    this.showError("Speech recognition is not supported in this browser.");
+                    this.recordButton.disabled = true;
+                }
+            }
+
+            setupEventListeners() {
+                this.recordButton.addEventListener('click', () => this.toggleRecording());
+                this.sendButton.addEventListener('click', () => this.sendTextMessage());
+                this.setReminderButton.addEventListener('click', () => this.setReminder());
+                this.textInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.sendTextMessage();
+                    }
+                });
+            }
+
+            setupRecognitionHandlers() {
+                this.recognition.onstart = () => {
+                    this.isRecording = true;
+                    this.recordButton.classList.add('recording');
+                    this.recordButton.innerHTML = '<i class="fas fa-stop"></i> Recording...';
+                };
+
+                this.recognition.onend = () => {
+                    this.isRecording = false;
+                    this.recordButton.classList.remove('recording');
+                    this.recordButton.innerHTML = '<i class="fas fa-microphone"></i> Press to Talk';
+                };
+
+                this.recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    this.processUserInput(transcript);
+                };
+
+                this.recognition.onerror = (event) => {
+                    this.showError(`Error in speech recognition: ${event.error}`);
+                    this.stopRecording();
+                };
+            }
+
+            toggleRecording() {
+                if (this.isRecording) {
+                    this.stopRecording();
+                } else {
+                    this.startRecording();
+                }
+            }
+
+            startRecording() {
+                try {
+                    this.recognition.start();
+                } catch (error) {
+                    this.showError(`Could not start recording: ${error.message}`);
+                }
+            }
+
+            stopRecording() {
+                if (this.isRecording) {
+                    this.recognition.stop();
+                }
+            }
+
+            async sendTextMessage() {
+                const message = this.textInput.value.trim();
+                if (message) {
+                    await this.processUserInput(message);
+                    this.textInput.value = '';
+                }
+            }
+
+            async processUserInput(input) {
+                try {
+                    this.addMessage('user', input);
+                    const response = await this.sendToServer(input);
+                    this.addMessage('bot', response.response);
+                    this.updateSentimentDisplay(response);
+                } catch (error) {
+                    this.showError(`Error processing message: ${error.message}`);
+                }
+            }
+
+            async sendToServer(message) {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server responded with ${response.status}`);
+                }
+
+                return response.json();
+            }
+
+            async setReminder() {
+                const message = this.reminderMessageInput.value.trim();
+                const time = this.reminderTimeInput.value.trim();
+                if (message && time) {
+                    try {
+                        const response = await fetch('/set_reminder', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: new URLSearchParams({ message, time }),
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`Server responded with ${response.status}`);
+                        }
+
+                        const result = await response.json();
+                        if (result.error) {
+                            this.showError(result.error);
+                        } else {
+                            this.showSuccess(result.message);
+                        }
+                    } catch (error) {
+                        this.showError(`Error setting reminder: ${error.message}`);
+                    }
+                } else {
+                    this.showError("Both message and time are required to set a reminder.");
+                }
+            }
+
+            addMessage(type, content) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}-message`;
+
+                const timestamp = new Date().toLocaleTimeString();
+                messageDiv.innerHTML = `
+                    <div class="message-content">${content}</div>
+                    <div class="timestamp">${timestamp}</div>
+                `;
+
+                this.chatHistory.appendChild(messageDiv);
+                this.chatHistory.scrollTop = this.chatHistory.scrollHeight;
+            }
+
+            updateSentimentDisplay(response) {
+                const sentimentDiv = document.createElement('div');
+                sentimentDiv.className = 'sentiment-box';
+
+                const emoji = this.getSentimentEmoji(response.classification);
+                const score = (response.score * 100).toFixed(1);
+
+                sentimentDiv.innerHTML = `
+                    <div class="sentiment-indicator">
+                        <span class="emoji">${emoji}</span>
+                        <div>
+                            <strong>${response.classification}</strong>
+                            <div>Confidence: ${score}%</div>
+                            <div class="timestamp">${new Date().toLocaleTimeString()}</div>
+                        </div>
+                    </div>
+                `;
+
+                this.sentimentHistory.appendChild(sentimentDiv);
+                this.sentimentHistory.scrollTop = this.sentimentHistory.scrollHeight;
+            }
+
+            getSentimentEmoji(sentiment) {
+                const emojiMap = {
+                    'Happy': '😊',
+                    'Neutral': '😐',
+                    'Sad': '😞'
+                };
+                return emojiMap[sentiment] || '😐';
+            }
+
+            showError(message) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+
+                this.errorContainer.appendChild(errorDiv);
+                setTimeout(() => errorDiv.remove(), 5000);
+            }
+
+            showSuccess(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+
+                this.errorContainer.appendChild(successDiv);
+                setTimeout(() => successDiv.remove(), 5000);
+            }
+        }
+
+        // Initialize the chat interface when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const chat = new ChatInterface();
+        });
+    </script>
+</body>
+</html>
