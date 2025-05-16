@@ -1,8 +1,9 @@
 **🤖 Intelligent Chatbot with Sentiment Analysis and Task Scheduling**
+
 A Flask-based AI chatbot that enables emotionally aware, human-like conversations and supports natural language-based task scheduling with audio reminders. Built using BERT for sentiment detection and DialoGPT for dialogue generation, the system is accessible through both text and voice input, and designed for productivity and inclusivity.
 
-🔧 **Features
-**
+**🔧Features**
+
 1. Sentiment Analysis: Detects emotional tone (Happy, Neutral, Sad) using BERT.
    
 2. Conversational AI: Uses DialoGPT to generate intelligent and context-aware replies.
@@ -80,7 +81,8 @@ Visit http://localhost:5000/ in your browser to start chatting.  </pre>
 
 -Torch (PyTorch) – AI model inference
 
-📷** Sample Use Cases**
+**📷Sample Use Cases**
+
 User Input	Chatbot Behavior
 -"Hi"	Responds with a greeting
 
@@ -92,7 +94,7 @@ User Input	Chatbot Behavior
 
 -"21 April, Monday, 2025"	Confirms and finalizes the reminder
 
-🛡 Limitations
+**🛡 Limitations**
 
 Only supports English.
 p
@@ -100,7 +102,7 @@ Performance may vary with strong accents or noisy audio input.
 
 Reminders are scheduled locally (no cloud sync).
 
-📌** Future Enhancements**
+**📌Future Enhancements**
 
 Multilingual support using mBERT
 
@@ -110,7 +112,7 @@ PWA or mobile app version
 
 Sentiment detection from voice tone
 
-👨‍💻** Author**
+**👨‍💻Author**
 
 **Van Raj Thakur**
 
