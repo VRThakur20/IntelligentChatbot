@@ -5,17 +5,11 @@ A Flask-based AI chatbot that enables emotionally aware, human-like conversation
 **🔧Features**
 
 1. Sentiment Analysis: Detects emotional tone (Happy, Neutral, Sad) using BERT.
-   
 2. Conversational AI: Uses DialoGPT to generate intelligent and context-aware replies.
-   
 3. Task Scheduling: Set reminders with natural language and receive audio alerts.
-   
 4. Voice Input Support: Converts speech to text using Google Speech Recognition.
-   
 5. Audio Notifications: Reminder alerts played via Pygame TTS.
-    
 6. Conversation History: View, download, and clear past chat sessions.
-   
 7. Web Interface: Simple, intuitive frontend built with HTML/CSS and Flask templates.
     
 
@@ -37,7 +31,7 @@ Python 3.9+
 
 pip package manager
 
-Installation
+-Installation:
 
 <pre> 
 git clone https://github.com/yourusername/intelligent-chatbot.git
@@ -45,7 +39,7 @@ cd intelligent-chatbot
 pip install -r requirements.txt
  </pre>
 
-Setup
+-Setup:
 
 <pre> 
 Create a .env file:
@@ -66,51 +60,35 @@ Visit http://localhost:5000/ in your browser to start chatting.  </pre>
 🧠 **Technologies Used**
 
 -Flask – Backend web framework
-
 -Hugging Face Transformers
-
 -BERT – Sentiment classification
-
 -DialoGPT – Conversation generation
-
 -Google Speech Recognition – Voice-to-text input
-
 -APScheduler – Background task scheduling
-
 -Pygame – Voice/audio playback
-
 -Torch (PyTorch) – AI model inference
 
 **📷Sample Use Cases**
 
 User Input	Chatbot Behavior
 -"Hi"	Responds with a greeting
-
 -"I'm feeling sad"	Offers a joke, music, or quote
-
 -"Tell me a joke"	Delivers a random joke
-
 -"Set a reminder for 2:00 PM with a message Drink water"	Schedules a reminder
-
 -"21 April, Monday, 2025"	Confirms and finalizes the reminder
 
 **🛡 Limitations**
 
-Only supports English.
-p
-Performance may vary with strong accents or noisy audio input.
-
-Reminders are scheduled locally (no cloud sync).
+-Only supports English.
+-Performance may vary with strong accents or noisy audio input.
+-Reminders are scheduled locally (no cloud sync).
 
 **📌Future Enhancements**
 
-Multilingual support using mBERT
-
-Calendar/email integration
-
-PWA or mobile app version
-
-Sentiment detection from voice tone
+-Multilingual support using mBERT
+-Calendar/email integration
+-PWA or mobile app version
+-Sentiment detection from voice tone
 
 **👨‍💻Author**
 
