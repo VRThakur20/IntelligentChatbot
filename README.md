@@ -31,7 +31,7 @@ Python 3.9+
 
 pip package manager
 
--Installation:
+_**- Installation:**_
 
 <pre> 
 git clone https://github.com/yourusername/intelligent-chatbot.git
@@ -39,19 +39,16 @@ cd intelligent-chatbot
 pip install -r requirements.txt
  </pre>
 
--Setup:
+_**- Setup:**_
 
 <pre> 
 Create a .env file:
-
-ini
-
 FLASK_SECRET_KEY=your_secret_key
 </pre>
 
 Make sure to add a reminder audio file in audio/reminder.mp3.
 
-Run the App
+_**- Run the App:**_
 
 <pre>
 python app.py
