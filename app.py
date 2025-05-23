@@ -14,6 +14,10 @@ from apscheduler.triggers.date import DateTrigger
 import pygame  # Use pygame instead of playsound
 import time
 import random
+os.environ["SDL_AUDIODRIVER"] = "dummy"
+
+import pygame
+pygame.init()
 
 # Load environment variables from .env file
 load_dotenv()
